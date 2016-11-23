@@ -1,0 +1,14 @@
+{
+  "name": "book-guide-2016",
+  "version": "1.0.0",
+  "description": "Script to get all images and resize them. (Nothing to do with app server or index.html)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "sharp": "^0.16.2"
+  }
+}
