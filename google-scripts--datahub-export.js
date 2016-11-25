@@ -125,10 +125,10 @@ function exportJson() {
     for (var j = 1;j<numCols;j++) {
       if(header[j] === 'bookCoverURL') {
         var image_name = row[j].replace(/http:\/\/www.gannett-cdn.com\/media\/\d+\/\d+\/\d+\/\w+\/?\w+?\//g,'');
-        tempObj['bookCoverSmall'] = 'media/200/'+image_name;
-        tempObj['bookCoverMed'] = 'media/800/'+image_name;
+        tempObj['bookCover'] = 'media/400/'+image_name;
+      } else {
+        tempObj[header[j]] = row[j];
       }
-      tempObj[header[j]] = row[j];
     }
     var pos = cats.indexOf(cat);
     output[pos]['books'].push(tempObj);
