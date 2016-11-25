@@ -1,0 +1,169 @@
+body {font-family: 'Futura Today', Arial, serif;}
+strong, b, h1 ,h2, h3, h4, h5, h6 {font-family: 'Futura Today Bold', Arial, serif;}
+a {text-decoration: none; color:#1990e5;}
+a:visited {color:#1990e5;}
+a:hover {text-decoration: underline;}
+
+nav.site-nav {position:absolute !important;}
+
+.mjs-container {margin: 0 auto; max-width: 760px; width: 96%;}
+.mjs-headline {text-align: center; font-size:48px; margin: 40px 0 15px 0;}
+.mjs-byline {text-align: center; font-size:14px; margin: 0 0 30px 0;}
+
+.view-toggle {float:right;}
+a.view--active,
+a.view--active:hover,
+a.view--active:visited {color: #000; text-decoration: none;}
+
+#circles-container {margin: 0 auto; max-width: 1024px; width: 96%;}
+
+footer {height:50px; width: 100%;}
+
+/* circle styles */
+body.scroll-locked {
+	overflow: hidden;
+	/* TODO: Look into older IE browsers. May need to add overflow-x: hidden; */
+}
+
+header-content {
+	margin: 20px;
+}
+
+.categories {
+	position: relative;
+}				
+
+.category {
+	position: absolute;
+	background-color: #fff;
+	border: 1px dashed #ccc;
+	cursor: pointer;
+}
+
+.category.zoomed-in {
+	cursor: auto;
+}
+
+.category-text {
+	position: absolute;
+	width: 60%;
+	left: 20%;
+	top: 30%;
+}
+
+.category-text > .title {
+	text-align: center;
+}
+
+.category-text > .description {
+	text-align: left;
+}
+
+.books {
+	position: absolute;
+}
+
+.book {
+	position: absolute;
+}
+
+.book > img {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 3px;
+}
+
+.book > img:hover {
+	border: 3px #1990e5 solid;
+}
+
+.book.selected > img {
+	border: 3px #1990e5 solid;
+}
+
+.zoom-out-overlay {
+	position: fixed;
+	top: 80px;
+	left: 20px;
+}
+
+.zoom-out-overlay .interaction-cue {
+	display: block;
+	margin-top: 16px;
+	position: relative;
+	left: 4px;
+}
+
+.back-button {
+	color: #1990e5;
+}
+.back-button:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.hidden {
+	display: none;
+}
+
+.card-image {
+	float: left;
+	max-width: 300px;
+	max-height: 300px;
+	margin-right: 25px;
+	margin-bottom: 1000px; /* don't want text to wrap undernearth image */
+}
+
+.card-text {
+	height: 300px;
+	overflow: scroll;
+}
+
+.card-title {
+	margin: 0;
+}
+
+.card-list {
+	list-style-type: none;
+	padding: 0;
+}
+
+.card-list > li {
+	margin-bottom: 15px;
+}
+
+.card-title { margin:-3px 0 0 0; padding:0; font-size:20px; line-height:1.2; }
+.card-author { margin:0; padding:0; font-style:italic; font-size:12px; }
+
+.hidden-scroll-overlay {
+	position: absolute;
+	top: 280px;
+	width: 300px;
+	height: 30px;
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(254,254,254,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(254,254,254,1) 100%);
+	pointer-events: none;
+}
+
+/* booklist styles */
+.mjs--top {margin-top: 10px; float:right; font-size:12px; font-weight:normal; font-family:'Futura Today', Arial, sans-serif; color:blue;}
+
+.mjs-booklist-container {display: none;}
+@media (max-width: 1024px) {
+	.mjs-booklist-container {display: block;}
+	.view-toggle {display: none;}
+}
+
+.booklist--catname {margin:40px 0 10px 0; padding:0 0 5px 0; border-bottom: 1px solid #225378;}
+.booklist--book {overflow-y:auto; margin:0 0 20px 0;}
+.booklist--cover {display:block; float:left; margin-right:10px; width:100%; max-width:80px; height:auto;}
+.booklist--title {margin:-3px 0 0 0; padding:0; font-size:20px; line-height:1.2;}
+.booklist--meta {margin:0; padding:0; font-style:italic; font-size:12px;}
+.booklist--desc {margin:10px 0 0 0; padding:0; font-size: 14px;}
+.booklist--rule {width:80%; margin: -5px auto 15px auto; padding: 0; border:0; height:0;border-top:1px solid rgba(0, 0, 0, 0.1); border-bottom:1px solid rgba(255, 255, 255, 0.3);}
+
+.mjs-bookcategories {text-align: center;}
+.bookcategories-cat {display:inline-block; margin:5px 0; padding:0 12px; background:#ccc; border-radius:5px; cursor:pointer; font-size:14px; line-height:28px; text-transform:uppercase; }
+.bookcategories-cat:hover {color:#1990e5;}

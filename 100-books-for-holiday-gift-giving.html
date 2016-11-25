@@ -1,0 +1,161 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>100 books for holiday gift giving in 2016 | Journal Sentinel</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/shared/css/font.futura-today.css" type="text/css" />
+
+	<meta name="description" content="Our suggested list of 100 new books for holiday gift-giving represents a variety of genres, topics and tones.">
+	<meta property="og:url" content="http://projects.jsonline.com/entertainment/2016/11/27/100-books-for-holiday-gift-giving.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="100 books for holiday gift giving in 2016">
+    <meta property="og:description" content="Our suggested list of 100 new books for holiday gift-giving represents a variety of genres, topics and tones. I haven't completely shied away from serious or intense books, but I've kept pleasure reading in mind.">
+    <meta property="og:image" content="http://projects.jsonline.com/entertainment/2016/11/27/media/book-guide.jpg">
+    <meta property="og:site_name" content="JSOnline.com">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+	<script src="/shared/header/v1/header.js"></script>
+	<div class="mjs-container">
+		<div class="header-content">
+			<h1 class="mjs-headline">100 books for holiday gift giving in 2016</h1>
+			<p class="mjs-byline">
+				By <a href="http://www.jsonline.com/staff/10051356/jim-higgins/">Jim Higgins</a> of the Milwaukee Journal Sentinel<br>
+				Designed and Developed by <a href="mailto:mandre@gannett.com">Michael Andre</a> and <a href="mailto:andrew.mollica@jrn.com">Andrew Mollica</a>
+			</p>
+			<p>
+				Our suggested list of 100 new books for holiday gift-giving represents a variety of genres, topics and tones. I haven't completely shied away from serious or intense books, but I've kept pleasure reading in mind. It is not a best-of-the-year list (we'll publish ours on Dec. 11), though some books recommended here could easily be on such a list.
+			</p>
+			<p>
+				Many of these books were published in the second half of the year. Browse our <a href="http://archive.jsonline.com/entertainment/books/100-books-for-your-summer-reading-list-b99726796z1-381116511.html">summer reading picks</a>, featuring books published earlier in 2016.
+			</p>    
+			<p>
+				My Journal Sentinel colleague Chris Foran wrote many of the pop culture and musical book suggestions. I've also drawn on previous reviews by contributors Mike Fischer, Carole E. Barrowman, Erin Kogler and Jon M. Gilbertson.
+			</p>
+			<p><em>Select a category to view book descriptions.</em><span class="view-toggle">Explore as: <a class="view--list" href="#" onclick="toggleViews('list')">List</a> | <a class="view--active view--circles" href="#" onclick="toggleViews('circles')">Groups</a></span></p>
+		</div>
+
+		<div class="zoom-out-overlay hidden">
+			<div class="interaction-cue">
+				Select a book to see view its description.
+			</div>
+			<div class="back-button">
+				&larr; Back to all books
+			</div>
+		</div>
+	</div>
+	<div id="circles-container"></div>
+	<div class="mjs-container">
+		<div class="mjs-booklist-container">
+			<a name="All Categories" class="mjs--jumpto"></a>
+			<div class="mjs-bookcategories"></div>
+			<div class="mjs-booklist"></div>
+		</div>
+	</div>
+	<footer></footer>
+
+	<!-- booklist categories template -->
+	<script type="text/template" id="template-categoryList">
+		<span class="bookcategories-cat" onclick="window.location.hash = '<%= catNice %>'"><%= cat %></span>
+	</script>
+	<!-- booklist item template -->
+	<script type="text/template" id="template-bookList">
+		<div class="booklist--category">
+			<a name="<%= cat %>" class="mjs--jumpto"></a>
+			<h2 class="booklist--catname"><%= cat %> <a class="mjs--top" href="#All%20Categories">Top &uarr;</a></h2>
+			<% _.forEach(books, function(book, index) { %>
+				<div class="booklist--book">
+					<img class="booklist--cover" src="<%= book.bookCover %>">
+					<div class="booklist--about">
+						<h3 class="booklist--title">"<%= book.bookTitle %>"</h3>
+						<p class="booklist--meta">
+							<span class="booklist--author"><%= book.author %></span>
+							<% if (book.publisher !== '') { %><span class="booklist--publisher">(<%= book.publisher %>)</span> <% } %>
+						</p>
+						<p class="booklist--desc">
+							<%= book.description %>
+							<br>
+							<% if (book.reviewURL !== '') { %><a class="booklist--review" href="<%= book.reviewURL %>">Read full review</a><% } %>
+						</p>
+					</div>
+				</div>
+				<% if (index < (books.length - 1)) { %><hr class="booklist--rule"><% } %>
+			<% }) %>
+		</div>
+	</script>
+
+	<!-- circle layout detailed item template -->
+	<script type="text/template" id="template-circle-description">
+		<img class="card-image" src="<%= bookCover %>"> 
+		<div class="card-text"> 
+			<h3 class="card-title">"<%= bookTitle %>"</h3> 
+			<ul class="card-list">  
+				<li class="card-author"><%= author %> (<%= publisher %>)</li> 
+				<li class="card-description"><%= description %></li>
+				<% if (reviewURL !== '') { %><a class="card-review-link" href="<%= reviewURL %>">Read full review</a><% } %>
+			</ul> 
+			<div class="hidden-scroll-overlay"></div>  
+		</div>
+	</script>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/d3.min.js"></script>
+	<script src="js/lodash.min.js"></script>
+	<script src="js/circles.js"></script>
+	<script src="js/list.js"></script>
+
+	<script>
+		var toggleViews = function(view) {
+			if (view === 'list') {
+				$('.view--list').addClass('view--active');
+				$('.view--circles').removeClass('view--active');
+				$('#circles-container').empty();
+				$('.mjs-booklist-container').show();
+			} else if (view === 'circles') {
+				$('.view--circles').addClass('view--active');
+				$('.view--list').removeClass('view--active');
+				$('.mjs-booklist-container').hide();
+				drawCircles();
+			}
+		}
+		var drawCircles = function() {
+			var winWidth = $(window).width();
+		    if (winWidth < 1024) {
+		  		$('#circles-container').empty();
+		    } else if (winWidth < 1380) {
+			    $('#circles-container').empty();
+			    $('.mjs-booklist-container').hide();
+			    $('.view--circles').addClass('view--active');
+				$('.view--list').removeClass('view--active');
+			    renderCircles("small");
+		  	} else if (winWidth < 1680) {
+			    $('#circles-container').empty();
+			    $('.mjs-booklist-container').hide();
+			    $('.view--circles').addClass('view--active');
+				$('.view--list').removeClass('view--active');
+			    renderCircles("medium");
+		  	} else {
+			    $('#circles-container').empty();
+			    $('.mjs-booklist-container').hide();
+			    $('.view--circles').addClass('view--active');
+				$('.view--list').removeClass('view--active');
+			    renderCircles("large");
+		  	}
+		}
+		var handleResize = function() {
+			var winWidth = $(window).width;
+		    if (winWidth < 1024) {
+		  		$('.mjs-booklist-container').show();
+		    } else {
+			    drawCircles();
+		  	}
+		}
+		$(window).on('resize', _.debounce(handleResize, 400));
+		handleResize();
+		list();
+	</script>
+	<script src="//tags.tiqcdn.com/utag/gci/jsonline-cobrand/prod/utag.js"></script>
+</body>
+</html>
